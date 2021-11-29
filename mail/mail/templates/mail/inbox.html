@@ -1,0 +1,69 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>{{ request.user.email }}</h2>
+
+    <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+    <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+    <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+    <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+
+    <hr>
+
+    <div id="emails-view">
+        <div id="emails-view-header"></div>
+
+        <table id="emails-view-table">
+        </table>
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}" minlength=0>
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control" minlength=0>
+            </div>
+            <div id="invalid_compose_recipients" class="invalid-feedback"> </div>
+            <p id="compose_recipients_help" class="text-success">Separte multiple emails with a coma (foo@test.com, bar@test.com)</p>
+            <div class="form-group">
+                <input class="form-control" id="compose-subject" placeholder="Subject" minlength=0>
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body" minlength=0></textarea>
+            <input type="submit" class="btn btn-primary" id="submit-compose"/>
+        </form>
+    </div>
+
+    <div id="show-email-view">
+        <h3 id="sev_heading"></h3>
+        <hr>
+        <div class="sev_container">
+            <div style="width: 80%">
+                <div class="sev_mail_inline">
+                    <h4 id="sev_subject"></h4>
+                    <p id="sev_timestamp"></p>
+                </div>
+                <p class="sev_mail_inline" style="margin-top: 20px" id="sev_recipients"></p>
+            </div>
+            <div id="archive_button_flex" style="width: 20%">
+                <div class="sev_mail_inline">
+                    <span id="sev_archive"></span>
+                    <p id="sev_archive_status"></p>
+                </div>
+                <button type="button" id="show_inbox_btn"  class="btn btn-light" onclick="load_inbox()">Show Inbox</button>
+            </div>
+        </div>
+        <hr>
+        <h4><b>Message:</b></h4>
+        <p id="sev_body"></p>
+        <button id="reply-btn"  class="btn btn-primary">Reply</button>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

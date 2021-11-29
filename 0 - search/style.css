@@ -1,0 +1,195 @@
+.default_font{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.hipervinculo {
+	color: rgba(0, 0, 255, 0.658);
+	margin: 5px;
+	text-align: right;
+	text-decoration: solid;
+	
+	display: block;
+	
+}
+
+.hipervinculo:hover {
+	color : grey;
+	text-decoration: underline;
+}
+#Hiperviculos {
+	text-align: right;
+	margin: 10px;
+}
+
+.button {
+	background-color : rgb(244, 244, 244);
+	text-align: center;
+	color:  rgb(95, 99, 104);/*text color */
+	border-style: solid;
+	border-color:rgb(244, 244, 244); /*Same color as Background color*/
+	border-radius: 5px;
+	height: 36px;
+	min-width: 54px;
+	font-size: 16px;
+	margin:10px;
+	margin-top: 15px;
+	
+}
+
+
+.search_bar {
+	height: 44px;
+	width: 482px;
+   
+	
+	font-size: 16px;
+	color: black;
+	
+	outline: none;
+	text-indent: 5%;
+
+	border-radius: 25px;
+	border: 1px solid rgb(180, 180, 180);
+	
+	margin-top: 20px;
+}
+
+
+@media (max-width: 500px) {
+	.search_bar { 
+		width: 350px;
+	}
+
+}
+@media (max-width: 350px) {
+	.search_bar { 
+		width: 280px;
+	}
+}
+
+.search_bar:hover {
+	
+	box-shadow: 0 0 0 2px rgba(88, 88, 88, 0.2);
+	
+	
+}
+
+
+
+
+.button:hover{
+	color: black;
+	border-style: solid;
+	border-color: grey;
+}
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+		
+  }
+
+#button_row {
+	text-align:center;
+	margin: auto;
+	
+}
+
+#google_logo{
+	height: 92px;
+	width: 272px;
+	margin-top: 109px;
+}
+
+
+/*
+Google Images
+*/
+
+#images_text {
+	
+	text-align: center;
+	display: block;
+	padding-left: 220px;
+	margin-top: -20px;
+
+}
+
+/*Advanced Search*/
+
+#advanced_search_logo{
+	font-size: 20px;
+	color: #d93925;
+	
+}
+
+#find_pages_with{
+
+	font-size: 17px;
+	margin-top: 20px;	
+	float: left;
+}
+#find_pages_with_div{
+	display: flex;
+    
+}
+#to_do_this_in_search_box{
+
+	margin-left: 42vw;
+	margin-top: 20px;	
+	font-weight: 400;
+}
+#advanced_search{
+
+	margin:30px
+	
+}
+
+.form_row {
+	margin-bottom: 30px;
+}
+
+.form_row > *{
+	display: inline;
+}
+.form_row > input{
+	
+	border-width: 1px;
+	border-color: rgb(214, 210, 210);
+
+	width: 30vw;
+		
+}
+@media (max-width: 600px){
+	.form_row > small {
+		display: none;
+	}
+	.form_row > input {
+		width : 70vw;
+	}
+	.form_row > input{
+		margin-left : 5px
+		}	
+
+}
+
+.form_row > small {
+	font-size: 11px;
+	color : grey;
+	margin-left: 20px;
+}
+.form_row > input:focus{
+	border-color:rgba(71, 177, 238, 0.719);	
+	outline: none;
+}
+.form_row > p {
+	font-size: 13px;
+	width : 250px	;
+	display: inline-block;
+}
+#advanced_search_button{
+	color: white;
+	background-color: #3079ed;
+	margin-left: 37vw;
+	font-size: 13.3px;
+}

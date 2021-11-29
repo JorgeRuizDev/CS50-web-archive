@@ -1,0 +1,105 @@
+textarea {
+    min-height: 400px;
+}
+
+#emails-view-table {
+    width: 100%;
+    #background-color: #f8c0c0;
+
+    overflow-x: auto;
+    #border-top: 1px solid #e0dede;
+
+
+
+}
+#emails-view-table th{
+    font-weight: normal;
+
+}
+#emails-view-table tr {
+    height: 35px;
+    border-bottom: 1px solid #e0dede;
+    cursor: pointer;
+}
+
+#table-buttons {
+    width: 6%;
+    min-width: 10px;
+}
+
+
+
+#table-sender {
+    width: 20%;
+    font-weight: bolder;
+    justify-content: left;
+
+}
+
+.read {
+    background-color: rgba(239, 233, 233, 0.87);
+}
+
+#table-subject {
+    width: 55%;
+    font-weight: bold;
+}
+
+#table-timestamp {
+    width: 19%;
+    color: darkgrey;
+}
+
+.email_list_btn {
+    display: inline;
+    cursor: pointer;
+    width: 25px;
+    margin: 5px;
+}
+.email_list_btn:hover {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+
+}
+
+#sev_archive {
+    font-size: 30px;
+    color: dodgerblue;
+    cursor: pointer;
+
+    transition: 0.1s
+}
+
+
+#sev_archive:hover {
+    color:grey;
+    font-size: 28px;
+}
+
+#disabled {
+    cursor: not-allowed;
+}
+
+
+.sev_mail_inline > * {
+    display: inline;
+}
+
+
+.sev_mail_inline p {
+    color: rgba(201, 199, 199, 0.95);
+}
+
+.sev_container {
+    display: flex;
+}
+
+#archive_mail:hover {
+    color: rgb(134, 134, 134);
+}
+
+#mark_as_read_btn:hover {
+    color: rgb(134, 134, 134);
+}

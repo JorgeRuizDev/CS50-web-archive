@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Google Search</title>
+	<link rel="stylesheet" href="style.css">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body>
+	<div class="container-fluid">
+
+		<div>
+			<div id="Hipervinculos" class="default_font">
+
+				<a href="advanced_search.html " class="hipervinculo">Advanced search</a>
+				<a href="image_search.html" class="hipervinculo">Image search</a>
+
+			</div>
+			<img src="https://www.google.es/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" class="center"
+				id="google_logo">
+
+			<!--  Botón de búsqueda  -->
+			<form action="https://google.es/search" class="default_font">
+				<input type="text" name="q" class="search_bar center" placeholder="Search here!">
+
+				<div id="button_row">
+					
+					<input type="submit" name="btnK" value="Google Search" class="button">
+					<input type="submit" name="btnI" value="I'm Feeling Lucky" class="button" onsubmit="btnI">
+
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
