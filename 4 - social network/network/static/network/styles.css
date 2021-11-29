@@ -1,0 +1,77 @@
+
+.new_post_main {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.new_post_main > label {
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+.post_card  {
+
+    border: 1px solid rgba(220, 219, 219, 0.42);
+    margin-bottom: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+}
+.post_card > b {
+    display: inline-block;
+}
+
+.post_card > button {
+    display: inline-block;
+}
+
+.edit_post{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.post_card > h4 {
+    margin: 15px 15px 15px 0px;
+}
+
+
+.like_btn {
+    display: inline-block;
+    width: 60px;
+    cursor: pointer;
+}
+
+
+.post_date {
+    display: inline-block;
+}
+
+#submit_btn {
+    display: block;
+}
+
+#post_date {
+    color: #929191;
+}
+
+#pag_bar {
+    margin-top: 15px;
+}
+
+#follow {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#following_count {
+    margin-left: 3%;
+}
+

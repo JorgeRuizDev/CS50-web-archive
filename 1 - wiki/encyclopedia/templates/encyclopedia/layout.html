@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar col-lg-2 col-md-3">
+            <h2><a href="/">Wiki</a></h2>
+
+            <form action="/search/" method="post">
+                {% csrf_token %}
+                {{ search_form}}
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <div>
+                <a href="{% url 'index' %}">Home</a>
+            </div>
+            <div>
+                <a href={% url "new" %}> Create New Page</a>
+            </div>
+            <div>
+                <a href={% url "random" %}>Random</a>
+            </div>
+            {% block nav %}
+            {% endblock %}
+        </div>
+        <div class="main col-lg-10 col-md-9">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

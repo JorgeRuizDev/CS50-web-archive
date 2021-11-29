@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>{{ header }}</h2>
+        {% for listing in listings %}
+
+            <a href="{% url "show_listing" listing.id %}">
+                <div id="listing">
+                    <img src="{{ listing.image }}" alt="Listing Picture">
+                    <div class="listing_text">
+                        <h5>{{ listing.item_name }}</h5>
+                        <h6>Price: ${{ listing.max_bid }}</h6>
+                        <h6>Description:</h6>
+                        <p class="listing_desc">{{ listing.item_description }}</p>
+                        <p>Posted by {{ listing.owner|title }}</p>
+                        <p>Created on {{ listing.date }}</p>
+                        <button type="button" class="btn btn-primary">View Item</button>
+                    </div>
+                </div>
+            </a>
+
+        {% endfor %}
+
+{% endblock %}

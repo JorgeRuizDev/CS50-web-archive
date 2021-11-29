@@ -1,0 +1,47 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Add a new entry
+{% endblock %}
+
+{% block body %}
+
+
+
+    <form action={{ request.get_full_path }} method="post">
+
+        {% csrf_token %}
+        {% if is_edit_page %}
+
+            <h1>Edit {{ title_edit }}</h1>
+
+        {% else %}
+            <h1>Create a new Encyclopedia Entry</h1>
+            <div class="form-group">
+                <label for="formGroupExampleInput">New Entry</label>
+                {{ form.title }}
+            </div>
+        {% endif %}
+
+
+        {% if feedback %}
+           <p style="color: #c42f2f">The entry already exists. Please, use another title.
+        {% endif %}
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Entry Content (<a
+                    href="https://guides.github.com/features/mastering-markdown/#syntax" target="_blank">Markdown</a> format compatible!)</label>
+            {{ form.body }}
+        </div>
+
+        <button class="btn btn-primary" type="submit" name="done" value="True" >Send</button>
+        <button class="btn btn-secondary" type="submit" name="preview" value="True" >Preview</button>
+    </form>
+    {% if preview %}
+        <hr/>
+        <h1>{{ md_title }}</h1>
+        <hr/>
+        {{ md_content_as_HTML | safe }}
+
+    {% endif %}
+{% endblock %}

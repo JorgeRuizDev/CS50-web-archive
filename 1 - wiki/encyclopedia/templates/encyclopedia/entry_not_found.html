@@ -1,0 +1,24 @@
+{% extends 'encyclopedia/layout.html' %}
+
+{% block title %}
+    {{wiki_title}}
+{% endblock %}
+
+{% block body %}
+    <div class="error_box">
+        <h1 class="error_message"> Error 404 </h1>
+        <h3 class="error_message">The entry "{{entry_name}}" does not exist</h3>
+        <h4 class="error_message">Please, try again!</h4>
+        <div class="error_search">
+            <form action="{% url "searchEntry" %}" method="post">
+                {% csrf_token %}
+                {{ search_form }}
+            </form>
+
+        </div>
+        <h4>or</h4>
+        <a type="button" href="/" class="btn btn-success">Go Home</a>
+    </div>
+
+
+{% endblock %}

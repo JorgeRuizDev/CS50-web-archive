@@ -1,0 +1,53 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+    <div style="margin-left: 10%; margin-right: 10%; margin-top: 20px; text-align: center">
+        <h3>{{ userp.username | title }}</h3>
+        <b  id="follower_count">{{ follower_count }}</b>
+        <b>Followers</b>
+        <b id="following_count">{{ following_count }}</b>
+        <b> Following</b>
+    </div>
+
+    <div class="button_wrap">
+        {% if not user.is_authenticated %}
+            <button type="button" class="btn btn-primary" id="follow" disabled
+                    data-action={{ follow_status }}>{{ follow_status }}</button>
+        {% elif user != userp %}
+            <button type="button" class="btn btn-primary" id="follow"
+                    data-action={{ follow_status }} data-user={{ userp.username }}>
+                {{ follow_status }}</button>
+        {% endif %}
+        <hr>
+    </div>
+
+    <!--Posts--->
+    {% for post in posts %}
+        <form action="{% url "comments" %}" method="post" class="edit_form">
+            {% csrf_token %}
+            <div class="post_card">
+                <a href="{% url "user" post.user %}"><b class="inline">By {{ post.user | title }}</b></a>
+                {% if user == post.user %}
+                    <button type="button" class="btn btn-link edit_post" data-id="{{ post.id }}">Edit this post</button>
+                {% endif %}
+                <h4 class="post_body">{{ post.body }}</h4>
+                <p class="like_btn" data-post="{{ post.id }}">❤ {{ post.like_count }}</p>
+                <p class="post_date">{{ post.date }}</p>
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button type="submit" class="btn btn-light" id="submit_btn">Comment Section</button>
+            </div>
+
+            <div class="edit_textarea_div new_post_main">
+                <textarea name="body" class="form-control edit_textarea" id="new_post_body" rows="3"
+                          placeholder="Type Here!" data-id="{{ post.id }}"
+                          style="white-space: pre-line;"
+                >{{ post.body }}</textarea>
+                <button type="button" class="btn btn-primary textarea_btn" style=" display: inline; margin: 10px">Edit
+                </button>
+            </div>
+        </form>
+    {% endfor %}
+
+
+{% endblock %}

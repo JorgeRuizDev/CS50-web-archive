@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    background-color: white;
+}
+
+code {
+    white-space: pre;
+}
+
+h1 {
+    margin-top: 0px;
+    padding-top: 20px;
+    
+}
+
+textarea {
+    height: 90vh;
+    width: 80%;
+}
+
+.main {
+    padding: 10px;
+}
+.error_search{
+    width: 40vw;
+    margin: auto;
+    padding-top: 40px;
+}
+.search {
+    width: 100%;
+    font-size: 15px;
+    line-height: 15px;
+}
+.sidebar {
+    display: block;
+    background-color: #f0f0f0;
+    height: 100vh;
+    padding: 20px;
+}
+@media only screen and (max-width: 800px){
+    .sidebar{
+        height: max-content;
+    } 
+
+    .error_search {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 75vw;
+    }
+}
+
+.entry_list {
+    margin:  25px;
+}
+.sidebar h2 {
+    margin-top: 5px;
+}
+
+.error_box {
+    background-color: rgba(255, 0, 0, 0.63);
+    opacity: 50;
+    text-align: center;
+    height: 99vh;
+
+}
+.error_message  { 
+    padding-top : 30px
+}

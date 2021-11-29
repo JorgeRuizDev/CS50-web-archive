@@ -1,0 +1,37 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block body %}
+    {% if is_one_result %}
+
+        <h1> 1 result found </h1>
+
+    {% else %}
+
+        <h1> {{ entry_size }} results found</h1>
+
+    {% endif %}
+    <div class="entry_list">
+
+        {% for entry in entries %}
+            <a class="list-group-item list-group-item-action" href="wiki/{{ entry }}">{{ entry }}</a>
+        {% endfor %}
+
+    </div>
+
+
+    <div class="error_search">
+        <h2> Or try again </h2>
+
+        <form action="/search/" method="post">
+            {% csrf_token %}
+            {{ search_form }}
+        </form>
+
+    </div>
+
+
+{% endblock %}

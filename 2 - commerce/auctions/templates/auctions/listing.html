@@ -1,0 +1,142 @@
+{% extends  "auctions/layout.html" %}
+{% load bootstrap4 %}
+{% block body %}
+    <h2>Listing: {{ listing.item_name }}</h2>
+    {% if not item_is_active %}
+        <hr>
+        <div class="d-block p-2 bg-warning text-black">This item is no longer active!</div>
+
+        <hr>
+    {% endif %}
+    {% if user.is_authenticated %}
+
+        {% if in_watchlist %}
+            <i class="far fa-eye"></i> In Watchlist
+            <form method="post" action="{% url "remove_watchlist" %}">
+                {% csrf_token %}
+                <input type="hidden" name="item" value="{{ listing.id }}">
+                <input type="submit" class="btn btn-danger" value="Remove From Watchlist ">
+            </form>
+        {% else %}
+            <form method="post" action="{% url "add_watchlist" %}">
+                {% csrf_token %}
+                <input type="hidden" class="btn btn-success" name="item" value="{{ listing.id }}">
+                <input type="submit" class="btn btn-success" value="Add to Watchlist ">
+            </form>
+        {% endif %}
+        <hr>
+    {% endif %}
+    <div id="listing_pic_div">
+        <img src="{{ listing.image }}" alt="Item Picture">
+    </div>
+    {% if user_is_winner %}
+        <hr>
+        <div class="d-block p-2 bg-success text-white">Congratulations! You made the largest bid!</div>
+    {% endif %}
+    <hr>
+    <div class="listing_desc_deta_flex_cont">
+        <div class="listing_desc_deta">
+            <h3>Description:</h3>
+            <p class="listing_text">{{ listing.item_description }}</p>
+        </div>
+
+        <div class="listing_desc_deta">
+            <h2>Details</h2>
+            <div>
+                <ul>
+                    <li>Listed by: {{ listing.owner }}</li>
+                    <li>Publish date: {{ listing.date }}</li>
+                    <li><b>Max Bid: USD {{ max_bid }}</b></li>
+                    <li>Categories:</li>
+                    {% for category in categories %}
+                        <ul>
+                            <li>{{ category }}</li>
+                        </ul>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% if item_is_active %}
+        {% if user.is_authenticated %}
+            <hr>
+            <h2>Place Bid</h2>
+
+            {% if user_is_owner %}
+
+                <div class="d-block p-2 bg-warning text-black">You cannot participate in your own auction!</div>
+            {% else %}
+                <div class="bid_form">
+                    <form action="{% url 'show_listing' listing.id %}" method="post">
+                        {% csrf_token %}
+                        {% if form_error %}
+                            <h4 style="color : #ee2c2c">Your bid is smaller than the max bid (${{ max_bid }})</h4>
+                        {% endif %}
+                        {% bootstrap_field form.ammount placeholder="Amount (USD $)" show_label=False %}
+                        <button class="btn btn-success bid_button" name="bid" value="bid">Send</button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %}
+        {% if user_is_owner %}
+            <hr>
+            <!-- Button that sets the auction to inactive -->
+            <p>You can close the auction anytime. This cannot be undone!</p>
+            <form action="{% url "close_auction" %}" method="post">
+                {% csrf_token %}
+                <input type="submit" name="Close Auction" value="Close Auction" class="btn btn-danger bid">
+                <input type="hidden" name="item_close" value="{{ listing.id }}">
+
+            </form>
+        {% endif %}
+    {% endif %} <!-- end of Item Active-->
+    {% if user.is_authenticated %}
+        <hr>
+        <h2>Comments:</h2>
+        <form method="post" action="{% url "show_listing" id_listing=listing.id %}">
+            {% csrf_token %}
+            {% bootstrap_field comment_form.comment show_label=False layout="horizontal" horizontal_field_class='col-md-5' placeholder="Comment Here!" %}
+            <input type="hidden" name="item" value="{{ listing.id }}">
+            <button class="btn btn-success" name="comment-btn" value="comment">New Comment</button>
+        </form>
+    {% endif %}
+    <hr>
+    <div class="card-columns ">
+
+        {% for comment in comments %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comment.user | title }}</h5>
+                    <p class="card-text">{{ comment.comment }}</p>
+                    <p class="card-text"><small class="text-muted">{{ comment.date }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if bids_len > 0 %}
+        <h2>Bid History</h2>
+        <div class="div_history">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                </tr>
+                </thead>{% for bid in bids %}
+                <tbody>
+                <tr>
+
+                    <td>{{ bid.bidder.username|title }}</td>
+                    <td>$ {{ bid.ammount }}</td>
+                    <td>{{ bid.date }}</td>
+                </tr>
+
+                </tbody>
+            {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endblock body %}

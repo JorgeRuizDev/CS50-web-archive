@@ -1,0 +1,27 @@
+{% extends  "auctions/layout.html" %}
+{% load bootstrap4 %}
+
+{% block body %}
+    <h2>New listing for {{ user.get_username }}</h2>
+    {% if user.is_authenticated %}
+        <hr>
+        <form method="post" action="{% url "new listing" %}">
+        {% csrf_token %}
+            {% bootstrap_field form.item_name placeholder="Personal Computer"%}
+            {% bootstrap_field form.item_description placeholder="PC owned by Ringo Starr"%}
+            {% bootstrap_field form.min_bid  %}
+            {% bootstrap_field form.image  placeholder="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"%}
+            {% bootstrap_field form.categories %}
+            <p style="margin-left: 40px; color: grey">Use CTRL + Left Click to select more than one category!</p>
+            <!--Allows the user to enter a new category, once the user submits it, the page gets refreshed with the new cat-->
+            <h6>Add a new category:</h6>
+
+            {% bootstrap_form cat_form %}
+            <input class="btn btn-secondary" type="submit" name="new_cat" value="Add Category">
+            <hr>
+            <input class="btn btn-success" type="submit" name="submit" value="Submit">
+
+        </form>
+    {% endif %}
+
+{% endblock body %}

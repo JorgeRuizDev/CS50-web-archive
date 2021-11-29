@@ -1,0 +1,59 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+    {% if user.is_authenticated and user == post.user%}
+        <form method="post" action="{% url "comments"%}">
+            <div class="form-group new_post_main">
+                {% csrf_token %}
+                <label for="exampleFormControlTextarea1">Edit this post</label>
+                <textarea name="body" class="form-control" id="new_post_body" rows="3"
+                          placeholder="Type Here!" style="white-space: pre-line;">{{ post.body }}</textarea>
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button type="submit" class="btn btn-primary" name="edit" id="new_post_btn" style=" display: inline; margin: 10px">
+                   Edit This Post
+                </button>
+                <p style="display: inline; color: grey" id="body_length">0/4000</p>
+            </div>
+        </form>
+    {% else %}
+        <div class="post_card">
+            <a href="{% url "user" post.user %}"><b>By {{ post.user | title}}</b></a>
+            {% if user == post.user %}
+                <a>Edit this post</a>
+            {% endif %}
+            <h4 class="post_body">{{ post.body }}</h4>
+            <p class="like_btn" data-post="{{ post.id }}" >❤ {{ post.like_count }}</p>
+            <p class="post_date">{{ post.date }}</p>
+        </div>
+    {% endif %}
+
+
+    <hr>
+
+    <form method="post" action="{% url "comments" %}">
+        <div class="form-group new_post_main">
+            {% csrf_token %}
+            <label for="exampleFormControlTextarea1">New Coment</label>
+            <textarea name="new_comment" class="form-control" id="new_post_body" rows="3"
+                      placeholder="Type Your Comment Here!" style="white-space: pre-line;"></textarea>
+
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <button type="submit" class="btn btn-primary"  id="new_post_btn" style=" display: inline; margin: 10px">
+                New Comment
+            </button>
+            <p style="display: inline; color: grey" id="body_length">0/4000</p>
+        </div>
+    </form>
+
+    <hr>
+    {% for comment in comments %}
+        <div class="post_card">
+            <b>By: {{ comment.user | title }}</b>
+            <h4 class="post_body">{{ comment.body }}</h4>
+            <p class="post_date">On {{ comment.date }}</p>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
